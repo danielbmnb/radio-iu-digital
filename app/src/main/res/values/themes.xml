@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.IUDigitalRadio" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#0B0F19</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.IUDigitalRadio.App</item>
+    </style>
+
+    <style name="Theme.IUDigitalRadio.App" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#0B0F19</item>
+        <item name="android:statusBarColor">#0B0F19</item>
+        <item name="android:navigationBarColor">#182238</item>
+    </style>
+</resources>
