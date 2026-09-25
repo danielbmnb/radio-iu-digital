@@ -41,7 +41,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -80,6 +82,9 @@ fun RadioPlayerCard(
         ),
         label = "pulse"
     )
+
+    // Haptic Feedback for UI controls
+    val haptic = LocalHapticFeedback.current
 
     Card(
         modifier = modifier
@@ -226,7 +231,10 @@ fun RadioPlayerCard(
                     ) {
                         // Botón de Silenciador (Mute)
                         IconButton(
-                            onClick = onMuteClick,
+                            onClick = {
+                                haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+                                onMuteClick()
+                            },
                             modifier = Modifier
                                 .size(48.dp)
                                 .clip(CircleShape)
@@ -258,7 +266,10 @@ fun RadioPlayerCard(
                             contentAlignment = Alignment.Center
                         ) {
                             IconButton(
-                                onClick = onPlayPauseClick,
+                                onClick = {
+                                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                    onPlayPauseClick()
+                                },
                                 modifier = Modifier.size(72.dp)
                             ) {
                                 if (isLoading) {

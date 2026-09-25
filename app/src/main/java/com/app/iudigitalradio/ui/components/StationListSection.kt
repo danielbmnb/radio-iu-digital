@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -137,15 +136,11 @@ fun StationListSection(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Lista de Emisoras
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            contentPadding = PaddingValues(bottom = 24.dp)
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            items(
-                items = filteredStations,
-                key = { it.id }
-            ) { station ->
+            filteredStations.forEach { station ->
                 val isSelected = selectedStation?.id == station.id
                 StationItemCard(
                     station = station,
